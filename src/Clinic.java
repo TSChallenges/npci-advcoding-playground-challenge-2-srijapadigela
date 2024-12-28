@@ -1,19 +1,19 @@
 import java.util.Queue;
-import java.util.LinkedList;   // LinkedList also implements Queue
+import java.util.LinkedList;
 import java.util.Set;
 import java.util.HashSet;
 
-class Clinic {
+public class Clinic {
 
     private Queue<Patient> patientQueue;
     private Set<Patient> admittedPatients;
     private int dayCount;
 
-    // Constructor to initialize the clinic with a queue and a set of admitted patients
+    // Constructor
     public Clinic() {
-        this.patientQueue = new LinkedList<>();       // no patient in queue yet
-        this.admittedPatients = new HashSet<>();      // no patient admitted yet
-        this.dayCount = 1;    // Start with Day 1
+        this.patientQueue = new LinkedList<>();
+        this.admittedPatients = new HashSet<>();
+        this.dayCount = 1;
     }
 
     // Admit a patient to the clinic
@@ -31,7 +31,7 @@ class Clinic {
         int patientsScheduled = 0;
         while (!patientQueue.isEmpty() && patientsScheduled < 3) {
             Patient patient = patientQueue.poll();
-            patient.setAppointmentDay(dayCount);
+            patient.setAppointmentDay("Day " + dayCount);
             admittedPatients.add(patient);
             System.out.println("Scheduled " + patient.getName() + " on Day " + dayCount);
             patientsScheduled++;
@@ -44,6 +44,7 @@ class Clinic {
     // Provide treatment or prescription for a patient after their appointment
     public void providedTreatment(Patient patient, String treatment) {
         if (admittedPatients.contains(patient)) {
+            patient.setTreatment(treatment);
             System.out.println("Treatment provided to " + patient.getName() + ": " + treatment);
         } else {
             System.out.println("Patient not found in the admitted list.");
@@ -62,7 +63,7 @@ class Clinic {
     // Get the appointment details of a patient
     public void getAppointmentDetails(Patient patient) {
         if (admittedPatients.contains(patient)) {
-            System.out.println("Appointment Details: " + patient.getName() + " is scheduled on Day " + patient.getAppointmentDay());
+            System.out.println("Appointment Details: " + patient.getName() + " is scheduled on " + patient.getAppointmentDay());
         } else {
             System.out.println("Patient not found in the admitted list.");
         }
