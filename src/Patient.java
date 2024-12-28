@@ -1,4 +1,4 @@
-class Patient {
+public class Patient {
     private String name;
     private int age;
     private String gender;
@@ -16,7 +16,7 @@ class Patient {
         this.appointmentDay = null;
     }
 
-    // Getter methods for name, age, gender, symptoms, treatment, and appointmentDay
+    // Getter methods
     public String getName() {
         return name;
     }
@@ -41,7 +41,7 @@ class Patient {
         return appointmentDay;
     }
 
-    // Setter methods for treatment and appointmentDay
+    // Setter methods
     public void setTreatment(String treatment) {
         this.treatment = treatment;
     }
@@ -50,23 +50,15 @@ class Patient {
         this.appointmentDay = appointmentDay;
     }
 
-    /* The below equals() and hashCode() methods are crucial for the proper functioning of 
-       collections like HashSet, HashMap, and other hash-based collections. */
-
-    // Override equals() to compare Patient objects based on name, age, and gender
+    // Override equals() and hashCode()
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
         Patient patient = (Patient) obj;
         return age == patient.age && name.equals(patient.name) && gender.equals(patient.gender);
     }
 
-    // Override hashCode() to generate hash code based on name, age, and gender
     @Override
     public int hashCode() {
         return name.hashCode() + age + gender.hashCode();
@@ -74,6 +66,6 @@ class Patient {
 
     @Override
     public String toString() {
-        return "Patient{name='" + name + "', age=" + age + ", gender=" + gender + "}"; 
+        return "Patient{name='" + name + "', age=" + age + ", gender=" + gender + "}";
     }
 }
